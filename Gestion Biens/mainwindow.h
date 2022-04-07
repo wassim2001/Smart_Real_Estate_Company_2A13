@@ -26,8 +26,28 @@ private slots:
 
      void on_modif_button_clicked();
 
+     void on_pushButton_clicked();
+
+     void on_lineEdit_textChanged(const QString &arg1);
+
+     void on_pushButton_2_clicked();
+
+     void sendMail();
+
+         void mailSent(QString) ;
+
+         void on_envoyer_clicked();
+
+
+         void on_locate_clicked();
+
+         void on_search_textChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
     Biens B;
+signals:
+     void setCenter(QVariant, QVariant);
+     void addMarker(QVariant, QVariant);
 };
 #endif // MAINWINDOW_H

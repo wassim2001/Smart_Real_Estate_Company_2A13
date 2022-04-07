@@ -2,8 +2,9 @@ QT += printsupport
 QT       += core gui
 QT       += core gui sql
 QT += core gui network
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-
+QT       += charts serialport multimedia multimediawidgets widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets quickwidgets
+TARGET = mail
 CONFIG += c++11
 
 # The following define makes your compiler emit warnings if you use
@@ -21,12 +22,14 @@ SOURCES += \
     biens.cpp \
     connection.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtp.cpp
 
 HEADERS += \
     biens.h \
     connection.h \
-    mainwindow.h
+    mainwindow.h \
+    smtp.h
 
 FORMS += \
     mainwindow.ui
@@ -35,4 +38,7 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    qml.qrc
 

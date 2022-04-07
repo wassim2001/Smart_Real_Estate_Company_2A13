@@ -33,10 +33,13 @@ public:
         void setLatitude(float);
         void setLongititude(float);
      //fonctionalites
+        bool checkforchar(QString);
         bool ajouter();
         QSqlQueryModel* afficher();
         bool supprimer(int);
         bool modifier(int idp);
+        QSqlQueryModel *recherche(QString var);
+        QSqlQueryModel* triPrice();
 private:
    int idc,idp;
    QString type,liste,description,governorate,city;
