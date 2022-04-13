@@ -10,11 +10,12 @@ class Client
 public:
     //constricteur
     Client();
-    Client(int,QString,QString,QString,QString,int,QString);
+    Client(int,QString,QString,QString,QString,QString,int,QString);
         //getters
             int getIDC();
             QString getNOM();
             QString getPRENOM();
+            QString getSEXE();
             QString getDATENA();
             QString getMAIL();
             int getTELE();
@@ -23,6 +24,7 @@ public:
             void setIDC(int idc);
             void setNOM(QString nom);
             void setPRENOM(QString prenom);
+            void setSEXE(QString sexe);
             void setDATENA(QString datena);
             void setMAIL(QString mail);
             void setTELE(int tele);
@@ -35,10 +37,16 @@ public:
             bool supprimer(int);
             bool modifier(int idc);
 
+            QSqlQueryModel * rechercher(QString);
+            QSqlQueryModel *tri();
+            int nbetat0();
+            int nbetat1();
+
+
             //atribut
     private:
        int idc,tele;
-       QString nom,prenom,mail,datena,datein;
+       QString nom,prenom,sexe,mail,datena,datein;
     };
 
 #endif // CLIENT_H

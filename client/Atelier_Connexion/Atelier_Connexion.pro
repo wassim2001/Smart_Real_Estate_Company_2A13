@@ -4,9 +4,9 @@
 #
 #-------------------------------------------------
 
-QT       += core gui sql
+QT       += core gui sql charts
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts
 
 TARGET = Atelier_Connexion
 TEMPLATE = app
@@ -26,17 +26,22 @@ CONFIG += c++11
 
 SOURCES += \
     client.cpp \
+    excel.cpp \
         main.cpp \
         mainwindow.cpp \
-    connection.cpp
+    connection.cpp \
+    statistique.cpp
 
 HEADERS += \
     client.h \
+    excel.h \
         mainwindow.h \
-    connection.h
+    connection.h \
+    statistique.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        statistique.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

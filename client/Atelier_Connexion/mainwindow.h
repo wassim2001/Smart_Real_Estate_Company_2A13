@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 #include "client.h"
 #include <QMainWindow>
-
+#include "statistique.h"
 namespace Ui {
 class MainWindow;
 }
@@ -24,9 +24,19 @@ private slots:
 
     void on_tabcl_activated(const QModelIndex &index);
 
+    void on_pushButton_clicked();
+
+    void on_pushButton_2_clicked();
+
+    void on_pushButton_3_clicked();
+
+    void on_pushButton_stat_clicked();
+
 private:
     Ui::MainWindow *ui;
     Client CL;
+    statistique *stat;
+
 };
 
 #endif // MAINWINDOW_H
