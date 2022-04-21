@@ -3,6 +3,8 @@
 #include "client.h"
 #include <QMainWindow>
 #include "statistique.h"
+#include"arduino.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -32,11 +34,18 @@ private slots:
 
     void on_pushButton_stat_clicked();
 
+    void update_label();
+
+    void on_pushButton_4_clicked();
+
+    void on_pushButton_5_clicked();
+
 private:
     Ui::MainWindow *ui;
     Client CL;
     statistique *stat;
-
+    QByteArray data;
+    Arduino A;
 };
 
 #endif // MAINWINDOW_H

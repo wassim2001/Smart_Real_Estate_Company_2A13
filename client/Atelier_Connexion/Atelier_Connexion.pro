@@ -3,7 +3,7 @@
 # Project created by QtCreator 2018-10-26T21:45:23
 #
 #-------------------------------------------------
-
+QT       +=serialport
 QT       += core gui sql charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets charts
@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    arduino.cpp \
     client.cpp \
     excel.cpp \
         main.cpp \
@@ -33,6 +34,7 @@ SOURCES += \
     statistique.cpp
 
 HEADERS += \
+    arduino.h \
     client.h \
     excel.h \
         mainwindow.h \
