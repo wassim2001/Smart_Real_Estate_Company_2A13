@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "biens.h"
 #include "smtp.h"
+#include "arduino.h"
 #include <QMessageBox>
 #include "connection.h"
 #include <QIntValidator>
@@ -10,7 +11,6 @@
 #include <QPieSeries>
 #include <QtCharts>
 #include <QQuickItem>
-#include<QPainter>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -38,6 +38,17 @@ MainWindow::MainWindow(QWidget *parent)
 
             emit setCenter(37.27561, 9.86718);
             emit addMarker(37.27561, 9.86718);
+
+            int ret=A.connect_arduino(); // lancer la connexion à arduino
+            switch(ret){
+            case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+                break;
+            case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+               break;
+            case(-1):qDebug() << "arduino is not available";
+            }
+             QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+             //le slot update_label suite à la reception du signal readyRead (reception des données).
 
 
 }
@@ -220,11 +231,6 @@ void MainWindow::on_lineEdit_textChanged(const QString &arg1)
     ui->tab_biens->setModel(B.recherche(arg1));
 }
 
-void MainWindow::on_pushButton_2_clicked()
-{
-    ui->tab_biens->setModel(B.triPrice());
-}
-
 void MainWindow::sendMail()
 {
     Smtp* smtp = new Smtp("nay090236@gmail.com", "xzoxyxkgpuspbpve","smtp.gmail.com",465,30000);
@@ -262,4 +268,41 @@ void MainWindow::on_locate_clicked()
 void MainWindow::on_search_textChanged(const QString &arg1)
 {
     ui->tab_biens->setModel(B.recherche(arg1));
+}
+
+void MainWindow::on_comboBox_2_currentTextChanged(const QString &arg1)
+{
+    if(ui->comboBox_2->currentText()=="prix croissant")
+            ui->tab_biens->setModel(B.triPrice());
+       else if(ui->comboBox_2->currentText()=="prix decroissant")
+           ui->tab_biens->setModel(B.triPrice2());
+       else if(ui->comboBox_2->currentText()=="city")
+           ui->tab_biens->setModel(B.triPrice3());
+}
+
+
+
+
+
+
+void MainWindow::update_label()
+{
+    data=A.read_from_arduino();
+    qDebug() << data<<endl;
+
+    if(data=="1")
+
+        QMessageBox::information(this, tr("Card is valid!"), "ACCESS GIVEN");
+
+    else if (data=="0")
+
+        QMessageBox::information(this, tr("Card is unvalid"), "ACCESS DENIED");
+}
+
+
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    A.write_to_arduino("1");
 }
