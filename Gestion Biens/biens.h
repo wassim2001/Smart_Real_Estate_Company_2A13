@@ -40,6 +40,9 @@ public:
         bool modifier(int idp);
         QSqlQueryModel *recherche(QString var);
         QSqlQueryModel* triPrice();
+        QSqlQueryModel* triPrice2();
+        QSqlQueryModel* triPrice3();
+
 private:
    int idc,idp;
    QString type,liste,description,governorate,city;

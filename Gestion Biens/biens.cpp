@@ -167,3 +167,23 @@ Biens::Biens(int idp,QString type ,QString governorate,QString city,QString list
 
     return model;
     }
+    QSqlQueryModel* Biens::triPrice2()
+    {
+
+    QSqlQueryModel* model=new QSqlQueryModel();
+
+    model->setQuery("SELECT* FROM BIENS ORDER BY PRICE DESC");
+
+    return model;
+        }
+    QSqlQueryModel* Biens::triPrice3()
+    {
+
+    QSqlQueryModel* model=new QSqlQueryModel();
+
+    model->setQuery("SELECT* FROM BIENS ORDER BY CITY ASC");
+
+    return model;
+    }
+
+
